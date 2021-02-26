@@ -3,6 +3,7 @@
 PWD ?= $$(pwd)
 USERID ?= $$(id -u)
 
+EDX_RELEASE=juniper.master
 PYTHON_VERSION=3.6.5
 EDX_PLATFORM_VERSION=open-release/juniper.master
 
@@ -10,18 +11,16 @@ DOCKER_RUN=docker run --rm -it \
 	-v $(PWD)/edx-platform/locale/:/openedx/edx-platform/conf/locale/ \
 	-v ${HOME}/.transifexrc:/openedx/.transifexrc \
 	-v $(PWD)/edx-platform/.tx/:/openedx/edx-platform/.tx/:ro \
-	openedx-i18n
+	skillsnetwork/openedx-i18n:$(EDX_RELEASE)
 
 all: build download validate compile ## Download and compile translations from transifex
-
-transifexrc: ## Make sure an empty transifexrc credentials file exists
-	touch transifexrc
 
 shell: transifexrc ## Open a bash shell in the openedx container
 	$(DOCKER_RUN) bash
 
 build: ## Build the docker image that contains translations
-	docker build -t openedx-i18n \
+	docker pull skillsnetwork/openedx-i18n:$(EDX_RELEASE)
+	docker build -t skillsnetwork/openedx-i18n:$(EDX_RELEASE) \
 		--build-arg USERID=$(USERID) \
 		--build-arg PYTHON_VERSION=$(PYTHON_VERSION) \
 		--build-arg EDX_PLATFORM_VERSION=$(EDX_PLATFORM_VERSION) \
