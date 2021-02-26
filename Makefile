@@ -8,7 +8,7 @@ PYTHON_VERSION=3.6.5
 EDX_PLATFORM_VERSION=open-release/juniper.master
 
 DOCKER_RUN=docker run --rm -it \
-	-v $(PWD)/edx-platform/locale/:/openedx/edx-platform/conf/locale/ \
+	-v $(PWD)/edx-platform/conf/locale/:/openedx/edx-platform/conf/locale/ \
 	-v ${HOME}/.transifexrc:/openedx/.transifexrc \
 	-v $(PWD)/edx-platform/.tx/:/openedx/edx-platform/.tx/:ro \
 	skillsnetwork/openedx-i18n:$(EDX_RELEASE)
