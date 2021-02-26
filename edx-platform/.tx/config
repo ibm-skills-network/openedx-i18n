@@ -1,0 +1,16 @@
+[main]
+host = https://www.transifex.com
+
+[open-edx-releases.release-juniper]
+file_filter = conf/locale/<lang>/LC_MESSAGES/django.po
+minimum_perc = 0
+source_file = conf/locale/en/LC_MESSAGES/django.po
+source_lang = en_US
+type = PO
+
+[open-edx-releases.release-juniper-js]
+file_filter = conf/locale/<lang>/LC_MESSAGES/djangojs.po
+minimum_perc = 0
+source_file = conf/locale/en/LC_MESSAGES/djangojs.po
+source_lang = en_US
+type = PO
